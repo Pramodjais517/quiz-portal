@@ -144,10 +144,12 @@
                         <p id="captcha_err" class="text-danger"><strong>{{ form.captcha.errors }}</strong></p>
         <div class="svg-wrapper">
           <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+              <a  href="javascript:validateForm()" class="id_submit">
             <rect id="shape" height="40" width="150"  />
               <div id="text">
-                <a href="javascript:validateForm()" id="id_submit"><span class="spot"></span>Submit</a>
+                <a href="javascript:validateForm()" class="id_submit"><span class="spot"></span>Submit</a>
               </div>
+                  </a>
           </svg>
         </div>
     </form>
@@ -356,7 +358,7 @@
             }
         });
 
-        $("#id_submit").click(function (e) {
+        $(".id_submit").click(function (e) {
              if(submit==false ||
                 ($("#name_err").val() != "") ||
                 ($("#email_err").val() != "") ||
@@ -368,14 +370,14 @@
                 ($("#university_roll_noInput").val() == "")
              ){
                 e.preventDefault();
-                $("#id_submit").css('cursor', 'not-allowed');
+                $(".id_submit").css('cursor', 'not-allowed');
              }
              else{
-                $("#id_submit").css('cursor', 'pointer');
+                $(".id_submit").css('cursor', 'pointer');
              }
              });
 
-        $("#id_submit").hover(function (e) {
+        $(".id_submit").hover(function (e) {
              if(submit==false ||
                 ($("#name_err").val() != "") ||
                 ($("#email_err").val() != "") ||
@@ -387,10 +389,10 @@
                 ($("#university_roll_noInput").val() == "")
              ){
                 e.preventDefault();
-                $("#id_submit").css('cursor', 'not-allowed');
+                $(".id_submit").css('cursor', 'not-allowed');
              }
              else{
-                $("#id_submit").css('cursor', 'pointer');
+                $(".id_submit").css('cursor', 'pointer');
              }
              });
 

@@ -138,7 +138,7 @@ class CandidateRegistration(forms.ModelForm):
         end = ''
         start = ''
 
-        for i in range(year-1, year - 5, -1):
+        for i in range(year, year-5, -1):
             end += str(i % 10)
             i = int(i / 10)
             start += str(i % 10)
