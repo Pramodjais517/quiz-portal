@@ -106,7 +106,7 @@ class CandidateRegistration(forms.ModelForm):
     std_no = forms.CharField(validators=[std_no_regex], max_length=7, required=False)
     email = forms.EmailField(required=True)
     father = forms.CharField(max_length=255, required=False)
-    phone_regex = RegexValidator(regex=r"^[789]\d{9}$")
+    phone_regex = RegexValidator(regex=r"^[56789]\d{9}$")
     phone_number = forms.CharField(validators=[phone_regex], max_length=10, required=False)
     branch = forms.ChoiceField(choices=BRANCH_CHOICES, required=False)
     skills = forms.CharField(max_length=255, required=False)
@@ -138,7 +138,7 @@ class CandidateRegistration(forms.ModelForm):
         end = ''
         start = ''
 
-        for i in range(year, year-5, -1):
+        for i in range(year-1, year - 5, -1):
             end += str(i % 10)
             i = int(i / 10)
             start += str(i % 10)
