@@ -24,7 +24,6 @@ background-repeat: no-repeat;
   font-size: 36px;
   font-family:"Poppins", "Arial", "Helvetica Neue", sans-serif;
   color: black;
-
 }
 .card{
   position: absolute;
@@ -66,7 +65,6 @@ img{
   margin-bottom:0px;
 
 }
-
 
 .input-field label {
   color:black;
@@ -181,7 +179,6 @@ body {
   stroke: #310e8bf5;
   fill: transparent;
   color:#310e8bf5;
-
 }
 
 a{
