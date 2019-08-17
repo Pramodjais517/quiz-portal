@@ -1,12 +1,11 @@
 import xlwt
 from django.http import HttpResponse
 from .models import Marks
-from .models import SelectedAnswer, Candidate,CategoryMarks
+from .models import SelectedAnswer, Candidate,Marks
 from .models import Test, Category
 
 
 def export_xls(modeladmin, request, queryset):
-    category_marks = CategoryMarks.objects.all()
     response = HttpResponse(content_type='application/ms-excel')
     response['Content-Disposition'] = 'attachment; filename=Marksheet.xls'
     wb = xlwt.Workbook(encoding='utf-8')
@@ -44,10 +43,10 @@ def export_xls(modeladmin, request, queryset):
     font_style = xlwt.XFStyle()
     font_style.alignment.wrap = 1
     for obj in queryset:
-        candidate_all_category = category_marks.filter(candidate=obj)
-        maths = candidate_all_category[0]
-        verbal = candidate_all_category[1]
-        analytical = candidate_all_category[2]
+        cat = Category.objects.all()
+        maths = Marks.objects.get(candidate=obj, category=cat[0])
+        verbal = Marks.objects.get(candidate=obj, category=cat[1])
+        analytical = Marks.objects.get(candidate=obj, category=cat[2])
         row_num += 1
         row = [
             obj.name.upper(),
@@ -65,8 +64,8 @@ def export_xls(modeladmin, request, queryset):
             analytical.incorrect,
             analytical.marks,
             maths.correct+verbal.correct+analytical.correct,
-            maths.incorrect + verbal.incorrect + analytical.incorrect,
-            maths.marks + verbal.marks + analytical.marks
+            maths.incorrect + verbal.incorrect+analytical.incorrect,
+            maths.marks + verbal.marks+analytical.marks,
 
         ]
         for col_num in range(len(row)):
@@ -76,4 +75,3 @@ def export_xls(modeladmin, request, queryset):
     return response
     
 export_xls.short_description = u"Export as XLS"
-

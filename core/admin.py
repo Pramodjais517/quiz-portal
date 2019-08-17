@@ -3,7 +3,7 @@ from import_export.admin import ImportExportModelAdmin
 from core.models import Category, Question, Test, Instruction, Candidate,\
     SelectedAnswer, Marks, Additional, AdditionalQuestion
 from core.export import export_xls
-from core.models import CategoryMarks
+from core.models import Marks
 
 
 class CandidateAdmin(admin.ModelAdmin):
@@ -66,14 +66,14 @@ class TestAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Test
-
-
-class MarksAdmin(admin.ModelAdmin):
-    list_display = ('test_name', 'candidate', 'marks')
-    actions = [export_xls]
-
-    class Meta:
-        model = Marks
+#
+#
+# class MarksAdmin(admin.ModelAdmin):
+#     list_display = ('test_name', 'candidate', 'marks')
+#     actions = [export_xls]
+#
+#     class Meta:
+#         model = Marks
 
 
 class AdditionalAdmin(admin.ModelAdmin):
@@ -100,5 +100,5 @@ admin.site.register(Candidate, CandidateAdmin)
 admin.site.register(SelectedAnswer)
 admin.site.register(AdditionalQuestion, AdditionalQuestionAdmin)
 admin.site.register(Additional, AdditionalAdmin)
-admin.site.register(Marks, MarksAdmin)
-admin.site.register(CategoryMarks)
+admin.site.register(Marks)
+# admin.site.register(Marks)

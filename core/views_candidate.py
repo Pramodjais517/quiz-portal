@@ -340,18 +340,10 @@ class SaveStatus(generic.ListView):
         else:
             raise Http404
 
+
 def logout(request):
-    tests = Test.objects.all()
-    if len(tests) != 0:
-        if "email" in request.session:
-            cands = Candidate.objects.filter(email=request.session['email'])[0]
-            print(cands)
-            try:
-                Marks.objects.get(test_name=tests[0], candidate=cands)
-            except:
-                CalculateMarks(cands.id)
-        else:
-            return redirect('signup')
+    if 'email' not in request.session:
+        return redirect('signup')
     for key in list(request.session.keys()):
         del request.session[key]
     return render(request, 'candidate/end.html')
